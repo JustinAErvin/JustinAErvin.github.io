@@ -2,211 +2,251 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <!-- Site Properties -->
-  <title>Sticky Example - Semantic</title>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="semantic/dist/semantic.min.js"></script>
+   <title>Justin A Ervin</title>
 
-  <script>
-  $(document)
-    .ready(function() {
+   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="semantic/dist/semantic.min.js"></script>
 
-      // fix main menu to page on passing
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $(".scrolledTitleChange").hide();
+      $(".myAvatar").show();
+
       $('.main.menu').visibility({
-        type: 'fixed'
+        type: 'fixed',
+        onFixed: function(){
+          $(".scrolledTitleChange").show();
+          $(".myAvatar").hide();
+        },
+        onUnfixed: function(){
+           $(".scrolledTitleChange").hide();
+           $(".myAvatar").show();
+        }
       });
+
       $('.overlay').visibility({
         type: 'fixed',
         offset: 80
       });
 
-      // lazy load images
       $('.image').visibility({
         type: 'image',
         transition: 'vertical flip in',
         duration: 500
       });
 
-      // show dropdown on hover
-      $('.main.menu  .ui.dropdown').dropdown({
-        on: 'hover'
+      $(document).on('click', 'a[href^="#"]', function (event) {
+         event.preventDefault();
+
+         $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top - 65
+         }, 1000);
       });
-    })
-  ;
+
+    });
   </script>
 
   <style type="text/css">
 
-  body {
-    background-color: #FFFFFF;
-  }
-  .main.container {
-    margin-top: 2em;
-  }
+    body {
+      background-color: #FFFFFF;
+    }
+    .main.container {
+      margin-top: 2em;
+    }
 
-  .main.menu {
-    margin-top: 4em;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    transition:
-      box-shadow 0.5s ease,
-      padding 0.5s ease
-    ;
-  }
-  .main.menu .item img.logo {
-    margin-right: 1.5em;
-  }
+    .main.menu {
+      margin-top: 1em;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      transition:
+        box-shadow 0.5s ease,padding 0.5s ease;
+    }
+    .main.menu .item img.logo {
+      margin-right: 1.5em;
+    }
 
-  .overlay {
-    float: left;
-    margin: 0em 3em 1em 0em;
-  }
-  .overlay .menu {
-    position: relative;
-    left: 0;
-    transition: left 0.5s ease;
-  }
+	 .container.Section{
+		 padding-top: 1.5em;
+	 }
 
-  .main.menu.fixed {
-    background-color: #FFFFFF;
-    border: 1px solid #DDD;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  }
-  .overlay.fixed .menu {
-    left: 800px;
-  }
+    .overlay {
+      float: left;
+      margin: 0em 3em 1em 0em;
+    }
+    .overlay .menu {
+      position: relative;
+      left: 0;
+      transition: left 0.5s ease;
+    }
 
-  .text.container .left.floated.image {
-    margin: 2em 2em 2em -4em;
-  }
-  .text.container .right.floated.image {
-    margin: 2em -4em 2em 2em;
-  }
+    .main.menu.fixed {
+      background-color: #FFFFFF;
+      border: 1px solid #DDD;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    }
+    .overlay.fixed .menu {
+      left: 800px;
+    }
 
-  .ui.footer.segment {
-    margin: 5em 0em 0em;
-    padding: 5em 0em;
-  }
+    .text.container .left.floated.image {
+      margin: 2em 2em 2em -4em;
+    }
+    .text.container .right.floated.image {
+      margin: 2em -4em 2em 2em;
+    }
+
+    .ui.footer.segment {
+      margin: 8.5em 0em 0em;
+      padding: .7em 0em;
+    }
   </style>
 
 </head>
 <body>
 
-  <div class="ui main text container">
-    <h1 class="ui header">Sticky Example</h1>
-    <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
+  <div class="ui main text container" id="Section_Header">
+    <h1 class="ui header blue">
+      <div class="content">Justin A. Ervin</div>
+      <div class="sub header">Software Engineer | Manager | IT Magician</div>
+    </h1>
   </div>
-
 
   <div class="ui borderless main menu">
     <div class="ui text container">
-      <div class="header item">
-        <img class="logo" src="assets/images/logo.png">
-        Project Name
+      <div class="header item nameOnScrollDown">
+        <img class="ui avatar image myAvatar" src="images/myAvatar_200.png">
+        <span class="scrolledTitleChange">Justin A. Ervin</span>
       </div>
-      <a href="#" class="item">Blog</a>
-      <a href="#" class="item">Articles</a>
-      <a href="#" class="ui right floated dropdown item">
-        Dropdown <i class="dropdown icon"></i>
-        <div class="menu">
-          <div class="item">Link Item</div>
-          <div class="item">Link Item</div>
-          <div class="divider"></div>
-          <div class="header">Header Item</div>
-          <div class="item">
-            <i class="dropdown icon"></i>
-            Sub Menu
-            <div class="menu">
-              <div class="item">Link Item</div>
-              <div class="item">Link Item</div>
-            </div>
-          </div>
-          <div class="item">Link Item</div>
-        </div>
-      </a>
+      <a href="#Section_Header" class="item">Background</a>
+      <a href="#Section_Skills" class="item">Skills</a>
+      <!--<a href="#Section_FeatureProjects" class="item">Feature Projects</a>
+      <a href="#Section_OtherProjects" class="item">Other Projects</a>-->
+      <a href="#Section_Me" class="item">Me</a>
     </div>
   </div>
-
-  <div class="ui text container">
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <div class="overlay">
-      <div class="ui labeled icon vertical menu">
-        <a class="item"><i class="twitter icon"></i> Tweet</a>
-        <a class="item"><i class="facebook icon"></i> Share</a>
-        <a class="item"><i class="mail icon"></i> E-mail</a>
-      </div>
-    </div>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <img class="ui medium left floated image" data-src="assets/images/wireframe/square-image.png">
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-    <img class="ui medium right floated image" data-src="assets/images/wireframe/square-image.png">
-    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <img class="ui medium left floated image" data-src="assets/images/wireframe/square-image.png">
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-    <img class="ui medium right floated image" data-src="assets/images/wireframe/square-image.png">
-    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+  <div class="ui text container" id="Section_Background">
+		<h4 class="ui horizontal divider header">
+			<i class="university icon blue"></i>
+			Background
+		</h4>
+		<div class="overlay">
+			<div class="ui labeled icon vertical menu">
+				<a class="item" href="docs/JustinErvin_Resume.pdf" target="_blank" ><i class="file alternate icon"></i> Resume</a>
+				<a class="item" href="mailto:justinaervin@gmail.com"><i class="mail icon"></i> E-mail</a>
+				<a class="item" href="https://www.linkedin.com/in/justinaervin" target="_blank" ><i class="linkedin icon"></i> Linkedn</a>
+			</div>
+		</div>
+    	<p>I'm currently the <b>IT Manager/Lead Software Engineer</b> at an aerospace company based in the south-eastern United States.
+		 I've had the pleasure of designing and building mission critical systems, optmizing and automating core processes that have increased productivity, reduced errors, and reudced cost. My other resposbilites incldue DevOps, VM management, and long term/day to day
+	 	managerial operations.</p>
+	 	<p>I have a <b>Masters of Science in Data Science</b> from Indiana University. I spent my time at IU learning how to work with and analyze big and complex data.
+			This included how to develop for cloud and distributed envioments using frameworks and engines like Apache Hadoop and Apache Spark, amongst others. As well as hours spent direclty coding machine learning algorithms in those distributed envioments.</p>
+		<p>I have a <b>Bachelors of Science in Computer Information Systems</b> from Jacksonville State University. For me, this is where my love for coding began. At JSU, I became hooked on the idea of creating something from nothing, turning an idea into
+			something people could interact with, and the how the reach and power of computing could have a positive impact on both society and business. I spent my time their going through the rigours of a computer science curriculum, but my hard work paid off earning me honors and distiction with my degree and admittance into multiple honor socities.
   </div>
+  <div class="ui text container Section" id="Section_Skills">
+     	<h4 class="ui horizontal divider header">
+        <i class="code icon blue"></i>
+		  Skills
+		</h4>
+   	<div class="ui grid">
+			<div class="four wide column">
+				<h4 class="ui header">Languages</h4>
+				<div class="ui list">
+					<div class="item">Python</div>
+					<div class="item">JavaScript</div>
+					<div class="item">HTML & CSS</div>
+					<div class="item">Java</div>
+					<div class="item">SQL</div>
+					<div class="item">R</div>
+					<div class="item">Scala</div>
+					<div class="item">C#</div>
+					<div class="item">C++</div>
+					<div class="item">VBScript</div>
+				</div>
+			</div>
+			<div class="four wide column">
+				<h4 class="ui header">Frameworks/Engines</h4>
+				<div class="ui list">
+					<div class="item">.Net</div>
+					<div class="item">Hadoop</div>
+					<div class="item">Spark</div>
+					<div class="item">JQuery</div>
+					<div class="Item">Django</div>
+					<div class="Item">Angular</div>
+					<div class="Item">Weka</div>
+				</div>
+			</div>
+			<div class="four wide column">
+				<h4 class="ui header">Databases</h4>
+				<div class="ui list">
+					<div class="item">SQL Server</div>
+					<div class="item">MySQL</div>
+					<div class="item">Oracle Database</div>
+					<div class="item">MongoDB</div>
+					<div class="item">HBase</div>
+				</div>
+			</div>
+			<div class="four wide column">
+				<h4 class="ui header">Devlopment Tools</h4>
+				<div class="ui list">
+					<div class="item">Visual Studio</div>
+					<div class="item">SQL Server Management Studio</div>
+					<div class="item">Git & GitHub</div>
+					<div class="item">Postman</div>
+					<div class="item">Atom</div>
+					<div class="item">NetBeans</div>
+					<div class="item">Fiddler</div>
+					<div class="item">PuTTY</div>
+					<div class="item">Virutal Box</div>
+					<div class="item">VMWare</div>
+				</div>
+			</div>
+   	</div>
+  </div>
+	<!--<div class="ui text container Section" id="Section_FeatureProjects">
+		<h4 class="ui horizontal divider header">
+			<i class="star outline icon blue"></i>
+			Feature Projects
+		</h4>
+		<p>Talk about projects with images of products</p>
+		<img class="ui medium left floated image" data-src="images/square-image.png">
+		<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+		<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+			<img class="ui medium right floated image" data-src="images/square-image.png">
+			Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, <br/>ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, <br/>eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus<br/><br/><br/><br/><br/><br/><br/><br/></p>
+	</div>
+	<div class="ui text container Section" id="Section_OtherProjects">
+		<h4 class="ui horizontal divider header">
+			<i class="thumbs up outline icon blue"></i>
+			Others Projects
+		</h4>
+		<p>Talk about other projects with images of products</p>
+	</div>-->
+	<div class="ui text container Section" id="Section_Me">
+		<h4 class="ui horizontal divider header">
+			<i class="coffee icon blue"></i>
+			About Me
+		</h4>
+		<p>Outside of work my interest revolve around running, cycling, and coffee; with a bit of traveling and backpacking mixed in. I've been a runner since highschool, but have recenlty started taking it more seriously competing in my first
+		half marathon in 2018 with plans to do more halfs and evenautlly a full. I've only recenlty picked up road cycling, but I had forgot how much fun it is to ride so it has quickly became a favorite. And coffee, every programmers life juice.
+	I'll take it anyway I can get it. My wonderful wife introduced me into how much fun traveling can be, but one of the best parts (and one of our favorite things to do when traveling) is finding the local coffee houses and sampling the goods.</p>
+	</div>
 
   <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
-      <div class="ui stackable inverted divided grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 1</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 2</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 3</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
-      <div class="ui inverted section divider"></div>
-      <img src="assets/images/logo.png" class="ui centered mini image">
       <div class="ui horizontal inverted small divided link list">
-        <a class="item" href="#">Site Map</a>
-        <a class="item" href="#">Contact Us</a>
-        <a class="item" href="#">Terms and Conditions</a>
-        <a class="item" href="#">Privacy Policy</a>
+        <div class="item">Designed & Built By Justin A. Ervin &nbsp;&nbsp;<i class="copyright outline icon"></i>2018</div>
       </div>
     </div>
   </div>
