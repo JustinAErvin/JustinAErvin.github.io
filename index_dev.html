@@ -16,39 +16,43 @@
 
 	<script type="text/javascript">
    	$(document).ready(function() {
-			var topLookUp = {};
-			$(".Section").each(function () {
-				var calc = $(this).visibility("get element calculations");
-				topLookUp[$(this).data("section")] = {top: calc.top, bottom: calc.bottom};
-			});
+		var topLookUp = {};
+		$(".Section").each(function () {
+			var calc = $(this).visibility("get element calculations");
+			topLookUp[$(this).data("section")] = {top: calc.top, bottom: calc.bottom};
+		});
+		
+		$(window).scroll(function(e){
 
-			$(window).scroll(function(e){
-				var currHeight = $(window).scrollTop();
-				for(var item in topLookUp){
-					if(currHeight > topLookUp[item].top && currHeight < topLookUp[item].bottom){
-						var oldItem = $(".ui.menu").find(".active");
-						oldItem.removeClass();
-						oldItem.addClass("item");
-						$("#MenuItem_" + item).addClass("active");
-						$("#MenuItem_" + item).addClass($("#MenuItem_" + item).data("sectioncolor"));
-						break;
-					}
+			var currHeight = $(window).scrollTop();
+			for(var item in topLookUp){
+				if(currHeight > topLookUp[item].top && currHeight < topLookUp[item].bottom){
+					console.log(item)
+					console.log("Cur Height | top | bottom ||",currHeight.toString() + " | " + topLookUp[item].top.toString() + " | " + topLookUp[item].bottom)
+					var oldItem = $(".ui.menu").find(".active");
+					oldItem.removeClass();
+					oldItem.addClass("item");
+					$("#MenuItem_" + item).addClass("active");
+					$("#MenuItem_" + item).addClass($("#MenuItem_" + item).data("sectioncolor"));
+					break;
 				}
-			});
+			}
 
-	      $('.image').visibility({
-	        type: 'image',
-	        transition: 'vertical flip in',
-	        duration: 750
-	      });
+		});
 
-	      $(document).on('click', 'a[href^="#"]', function (event) {
-	         event.preventDefault();
+      $('.image').visibility({
+        type: 'image',
+        transition: 'vertical flip in',
+        duration: 750
+      });
 
-	         $('html, body').animate({
-	            scrollTop: $($.attr(this, 'href')).offset().top - 65
-	         }, 1000);
-	      });
+      $(document).on('click', 'a[href^="#"]', function (event) {
+         event.preventDefault();
+
+         $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top - 65
+         }, 1000);
+      });
 
     });
   </script>
@@ -104,7 +108,7 @@
       <a id="MenuItem_background" href="#Section_Background" data-sectioncolor="olive" class="item active olive"><i class="university icon olive"></i>Background</a>
       <a id="MenuItem_skills" href="#Section_Skills" data-sectioncolor="green" class="item"><i class="code icon green"></i>Skills</a>
       <a id="MenuItem_featureprojects" href="#Section_FeatureProjects" data-sectioncolor="violet" class="item"><i class="star outline icon violet"></i>Feature Projects</a>
-      <!-- <a id="MenuItem_otherprojects" href="#Section_OtherProjects" data-sectioncolor="orange" class="item"><i class="thumbs up outline icon orange"></i>Other Projects</a> -->
+      <a id="MenuItem_otherprojects" href="#Section_OtherProjects" data-sectioncolor="orange" class="item"><i class="thumbs up outline icon orange"></i>Other Projects</a>
       <a id="MenuItem_me" href="#Section_Me" data-sectioncolor="red" class="item"><i class="coffee icon red"></i>Me</a>
 		<a id="MenuItem_contact" href="#Section_Contact" data-sectioncolor="black" class="item"><i class="mail icon"></i>Contact</a>
 		<a href="docs/JustinErvin_Resume.pdf" class="item" target="_blank" ><i class="file alternate icon grey"></i> Resume</a>
@@ -115,7 +119,7 @@
 			Background
 		</h4>
 		<img class="ui medium right floated  bordered rounded image" data-src="images/me.png">
-	 	<p>I'm currently the <b>Lead Software Engineer/IT Manager</b> at an aerospace company based in the south-eastern United States.
+	 	<p>I'm currently the <b>IT Manager/Lead Software Engineer</b> at an aerospace company based in the south-eastern United States.
 		 I've had the pleasure of designing and building mission critical systems, optmizing and automating core processes that have increased productivity, reduced errors, and reudced cost. My other resposbilites incldue DevOps, VM management, and long term/day to day
 	 	managerial operations.</p>
 	 	<p>I have a <b>Masters of Science in Data Science</b> from Indiana University. I spent my time at IU learning how to work with and analyze big and complex data.
@@ -208,6 +212,44 @@
 			The Yamazumi board is an interactive work assignment tool. It visually shows what work is currently not assigned (left two columns) and the work currently assigned to each team member. The work assignment is done by bragging and dropping a work square from on column to another. As a work square is assigned to a team member, their available work time (seen in blue below the team member name) decreases based on the work blocks time to complete. Subsequently, if a work block is pulled away from a team member, their available work time increases. This tool gives the team lead visual way to understand the current work demands on each employee, while at the same time allowing a team member to understand their specific demands. This tool was designed to be displayed on a large screen in the work area to allow a for a high level of transparency about what each team member is assigned, and how much work each team member is assigned.
 			<p>The system was built using: <div class="ui label">HTML/CSS</div><div class="ui label">jQuery</div><div class="ui label">JavaScript</div><div class="ui label">jQuery UI</div><div class="ui label">ASP (Legacy Backend)</div></p>
 		</p>
+	</div>
+	<div class="ui text container Section" id="Section_OtherProjects" data-section="otherprojects">
+		<h4 class="ui horizontal divider header orange">
+			<i class="thumbs up outline icon orange"></i>
+			Others Projects
+		</h4>
+		<div class="ui items">
+			<div class="item">
+				<div class="image">
+					<img class="ui image" data-src="images/square-image.png">
+				</div>
+				<div class="content">
+					<div class="header">Project 1 Name</div>
+					<div class="description">
+						<p>Describe the project here</p>
+					</div>
+					<div class="extra">
+						<div class="ui label">JavaScript</div>
+						<div class="ui label">.Net Core</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="image">
+					<img class="ui image" data-src="images/square-image.png">
+				</div>
+				<div class="content">
+					<div class="header">Project 2 Name</div>
+					<div class="description">
+						<p>Describe the project here</p>
+					</div>
+					<div class="extra">
+						<div class="ui label">JavaScript</div>
+						<div class="ui label">.Net Core</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="ui text container Section" id="Section_Me" data-section="me">
 		<h4 class="ui horizontal divider header red">
